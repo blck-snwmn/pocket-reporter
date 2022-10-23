@@ -10,5 +10,5 @@ wrangler dev --test-scheduled
 
 Invoke scheduled functions
 ```bash
-curl curl "http://localhost:8787/cdn-cgi/mf/scheduled"
+curl "http://localhost:8787/cdn-cgi/mf/scheduled"
 ```
