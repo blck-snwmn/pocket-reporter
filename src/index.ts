@@ -19,6 +19,52 @@ export interface Env {
 	//
 	// Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
 	// MY_BUCKET: R2Bucket;
+	WEBHOOK_URL: string
+	ACCESS_TOKEN: string
+	CONSUMER_KEY: string
+}
+
+type pocketResp = {
+	list: Record<string, article>
+}
+
+type article = {
+	given_title: string,
+	resolved_title: string,
+	given_url: string,
+	resolved_url: string
+}
+
+function link(a: article): string {
+	return `* <${a.resolved_url ?? a.given_url}|${a.resolved_title ?? a.given_title}>`
+}
+
+function exists(a: article): boolean {
+	return a.resolved_url != undefined || a.given_url != undefined
+}
+
+async function fetchArticles(consumerKey: string, accessToken: string, since: Date, max: number): Promise<article[]> {
+	const body = {
+		consumer_key: consumerKey,
+		access_token: accessToken,
+		state: "all",
+		sort: "oldest",
+		since: since.getTime() / 1000, // getTime() includes miliseconds
+		count: max + 1,
+		detailType: "simple",
+	}
+	console.log(`{sort, since, detailType}={${body.sort}, ${body.since}, ${body.detailType}}`)
+	const resp = await fetch("https://getpocket.com/v3/get", {
+		method: "POST",
+		headers: {
+			"Content-type": "application/json",
+		},
+		body: JSON.stringify(body),
+	})
+
+	console.log(`status=${resp.status}`)
+	const pr = await resp.json() as pocketResp
+	return Object.keys(pr.list).map(k => pr.list[k]).filter(exists)
 }
 
 export default {
@@ -27,6 +73,25 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<void> {
-		console.log(`Hello World!`);
+		console.log(`execute worker`);
+		const now = new Date()
+		now.setDate(now.getDate() - 7)
+		console.log(`execute time: ${now}`)
+
+		const count = 20
+		const articles = await fetchArticles(env.CONSUMER_KEY, env.ACCESS_TOKEN, now, count)
+		let txt = `*Pocketに ${now.getFullYear()}/${now.getMonth()}/${now.getDay()} 以降に追加された記事一覧*\n` + articles.map(link).join("\n")
+		if (articles.length > count) {
+			txt += "\nmore"
+		}
+
+		const slack_resp = await fetch(env.WEBHOOK_URL, {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({ text: txt }),
+		})
+		console.log(`status is ${slack_resp.status}`)
 	},
 };
