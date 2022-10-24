@@ -2,7 +2,12 @@
 
 Reports Pocket articles added during the week
 
-# Test
+# Deploy
+```bash
+wrangler publish
+```
+
+# Test for local
 Start dev server
 ```bash
 wrangler dev --test-scheduled
