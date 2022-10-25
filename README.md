@@ -10,7 +10,7 @@ wrangler publish
 # Test for local
 Start dev server
 ```bash
-wrangler dev --test-scheduled
+wrangler dev --test-scheduled --local
 ```
 
 Invoke scheduled functions
