@@ -80,7 +80,7 @@ export default {
 
 		const count = 20
 		const articles = await fetchArticles(env.CONSUMER_KEY, env.ACCESS_TOKEN, now, count)
-		let txt = `*Pocketに ${now.getFullYear()}/${now.getMonth()}/${now.getDay()} 以降に追加された記事一覧*\n` + articles.map(link).join("\n")
+		let txt = `*Pocketに ${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} 以降に追加された記事一覧*\n` + articles.map(link).join("\n")
 		if (articles.length > count) {
 			txt += "\nmore"
 		}
