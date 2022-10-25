@@ -47,7 +47,7 @@ async function fetchArticles(consumerKey: string, accessToken: string, since: Da
 	const body = {
 		consumer_key: consumerKey,
 		access_token: accessToken,
-		state: "all",
+		state: "unread",
 		sort: "oldest",
 		since: since.getTime() / 1000, // getTime() includes miliseconds
 		count: max + 1,
