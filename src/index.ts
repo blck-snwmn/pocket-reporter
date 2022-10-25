@@ -75,9 +75,10 @@ export default {
 	): Promise<void> {
 		console.log(`execute worker`);
 		const now = new Date()
-		now.setDate(now.getDate() - 7)
 		console.log(`execute time: ${now}`)
+		now.setDate(now.getDate() - 7)
 
+		console.log(`since: ${now}`)
 		const count = 20
 		const articles = await fetchArticles(env.CONSUMER_KEY, env.ACCESS_TOKEN, now, count)
 
