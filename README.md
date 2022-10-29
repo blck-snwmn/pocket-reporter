@@ -3,9 +3,12 @@
 Reports Pocket articles added during the week
 
 # Setting
-- WEBHOOK_URL
-- ACCESS_TOKEN
-- CONSUMER_KEY
+Set the following as environment variables.
+|Key|Description|
+|--|--|
+|WEBHOOK_URL|Slack webhook url|
+|ACCESS_TOKEN|Pocket access token|
+|CONSUMER_KEY|Pocket consumer key|
 
 # Deploy
 ```bash
