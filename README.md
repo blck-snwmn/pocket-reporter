@@ -2,6 +2,11 @@
 
 Reports Pocket articles added during the week
 
+# Setting
+- WEBHOOK_URL
+- ACCESS_TOKEN
+- CONSUMER_KEY
+
 # Deploy
 ```bash
 wrangler publish
