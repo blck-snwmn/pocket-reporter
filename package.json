@@ -10,7 +10,7 @@
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-plugin-import": "^2.27.5",
     "typescript": "^5.1.6",
-    "wrangler": "^3.3.0"
+    "wrangler": "^3.4.0"
   },
   "private": true,
   "scripts": {
