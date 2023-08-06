@@ -1,4 +1,7 @@
 # pocket-reporter
+[![CodeQL](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/github-code-scanning/codeql)
+[![Deploy](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/publish.yml/badge.svg)](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/publish.yml)
+[![reviewdog](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/lint.yaml/badge.svg)](https://github.com/blck-snwmn/pocket-reporter/actions/workflows/lint.yaml)
 
 Reports Pocket articles added during the week
 
