@@ -14,6 +14,8 @@ export interface Env {
   WEBHOOK_URL: string
   ACCESS_TOKEN: string
   CONSUMER_KEY: string
+  CHANNEL: string
+  SQUEUE: Queue<ChatMessage>;
 }
 
 type PocketResp = {
@@ -25,6 +27,11 @@ type Article = {
   resolved_title: string,
   given_url: string,
   resolved_url: string
+};
+
+type ChatMessage = {
+  type: string;
+  body: Record<string, string>;
 };
 
 function link(a: Article): string {
@@ -85,13 +92,21 @@ export default {
       txt += "\nmore";
     }
 
-    const slackResp = await fetch(env.WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
+    await env.SQUEUE.send({
+      type: "chat.postMessage",
+      body: {
+        channel: env.CHANNEL,
+        text: txt,
       },
-      body: JSON.stringify({ text: txt }),
     });
-    console.log(`status is ${slackResp.status}`);
+
+    // const slackResp = await fetch(env.WEBHOOK_URL, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ text: txt }),
+    // });
+    // console.log(`status is ${slackResp.status}`);
   },
 };
