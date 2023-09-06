@@ -73,7 +73,7 @@ async function fetchArticles(
 
 export default {
   async scheduled(
-    controller: ScheduledController,
+    _controller: ScheduledController,
     env: Env,
   ): Promise<void> {
     console.log("execute worker");
