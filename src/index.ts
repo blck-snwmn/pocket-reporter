@@ -11,22 +11,22 @@
  */
 
 export interface Env {
-  WEBHOOK_URL: string
-  ACCESS_TOKEN: string
-  CONSUMER_KEY: string
-  CHANNEL: string
+  WEBHOOK_URL: string;
+  ACCESS_TOKEN: string;
+  CONSUMER_KEY: string;
+  CHANNEL: string;
   SQUEUE: Queue<ChatMessage>;
 }
 
 type PocketResp = {
-  list: Record<string, Article>
+  list: Record<string, Article>;
 };
 
 type Article = {
-  given_title: string,
-  resolved_title: string,
-  given_url: string,
-  resolved_url: string
+  given_title: string;
+  resolved_title: string;
+  given_url: string;
+  resolved_url: string;
 };
 
 type ChatMessage = {
@@ -35,7 +35,9 @@ type ChatMessage = {
 };
 
 function link(a: Article): string {
-  return `* <${a.resolved_url ?? a.given_url}|${a.resolved_title ?? a.given_title}>`;
+  return `* <${a.resolved_url ?? a.given_url}|${
+    a.resolved_title ?? a.given_title
+  }>`;
 }
 
 function exists(a: Article): boolean {
@@ -57,7 +59,9 @@ async function fetchArticles(
     count: max + 1,
     detailType: "simple",
   };
-  console.log(`{sort, since, detailType}={${body.sort}, ${body.since}, ${body.detailType}}`);
+  console.log(
+    `{sort, since, detailType}={${body.sort}, ${body.since}, ${body.detailType}}`,
+  );
   const resp = await fetch("https://getpocket.com/v3/get", {
     method: "POST",
     headers: {
@@ -83,11 +87,18 @@ export default {
 
     console.log(`since: ${now.toString()}`);
     const count = 20;
-    const articles = await fetchArticles(env.CONSUMER_KEY, env.ACCESS_TOKEN, now, count);
+    const articles = await fetchArticles(
+      env.CONSUMER_KEY,
+      env.ACCESS_TOKEN,
+      now,
+      count,
+    );
 
     const [y, m, d] = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
 
-    let txt = `*Pocketに ${y}/${m}/${d} 以降に追加された記事一覧*\n${articles.map(link).join("\n")}`;
+    let txt = `*Pocketに ${y}/${m}/${d} 以降に追加された記事一覧*\n${
+      articles.map(link).join("\n")
+    }`;
     if (articles.length > count) {
       txt += "\nmore";
     }
