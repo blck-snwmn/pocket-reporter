@@ -1,4 +1,4 @@
-name: reviewdog
+name: check(lint, format)
 on: 
   pull_request:
   push:
