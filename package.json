@@ -10,6 +10,8 @@
   "private": true,
   "scripts": {
     "start": "wrangler dev",
-    "deploy": "wrangler publish"
+    "deploy": "wrangler publish",
+    "lint": "biome lint .",
+    "format": "biome format ."
   }
 }
