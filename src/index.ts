@@ -35,9 +35,8 @@ type ChatMessage = {
 };
 
 function link(a: Article): string {
-  return `* <${a.resolved_url ?? a.given_url}|${
-    a.resolved_title ?? a.given_title
-  }>`;
+  return `* <${a.resolved_url ?? a.given_url}|${a.resolved_title ?? a.given_title
+    }>`;
 }
 
 function exists(a: Article): boolean {
@@ -96,9 +95,8 @@ export default {
 
     const [y, m, d] = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
 
-    let txt = `*Pocketに ${y}/${m}/${d} 以降に追加された記事一覧*\n${
-      articles.map(link).join("\n")
-    }`;
+    let txt = `*Pocketに ${y}/${m}/${d} 以降に追加された記事一覧*\n${articles.map(link).join("\n")
+      }`;
     if (articles.length > count) {
       txt += "\nmore";
     }
