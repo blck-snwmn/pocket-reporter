@@ -15,7 +15,5 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
-      - name: lint
-        run: npm run lint
-      - name: format
-        run: npm run format
+      - name: check(lint, format)
+        run: npm run check

@@ -11,7 +11,6 @@
   "scripts": {
     "start": "wrangler dev",
     "deploy": "wrangler publish",
-    "lint": "biome lint .",
-    "format": "biome format ."
+    "check": "biome check ."
   }
 }
