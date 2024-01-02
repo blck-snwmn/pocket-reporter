@@ -1,15 +1,3 @@
-/**
- * Welcome to Cloudflare Workers! This is your first scheduled worker.
- *
- * - Run `wrangler dev --local` in your terminal to start a development server
- * - Run `curl "http://localhost:8787/cdn-cgi/mf/scheduled"` to trigger the scheduled event
- * - Go back to the console to see what your worker has logged
- * - Update the Cron trigger in wrangler.toml (see https://developers.cloudflare.com/workers/wrangler/configuration/#triggers)
- * - Run `wrangler publish --name my-worker` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/runtime-apis/scheduled-event/
- */
-
 export interface Env {
   WEBHOOK_URL: string;
   ACCESS_TOKEN: string;
@@ -108,14 +96,5 @@ export default {
         text: txt,
       },
     });
-
-    // const slackResp = await fetch(env.WEBHOOK_URL, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ text: txt }),
-    // });
-    // console.log(`status is ${slackResp.status}`);
   },
 };
