@@ -2,6 +2,8 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    assignees:
+      - blck-snwmn
     schedule:
       interval: "monthly"
     groups:
@@ -9,7 +11,9 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: "github-actions"
-    directory: "/" 
+    directory: "/"
+    assignees:
+      - blck-snwmn
     schedule:
       interval: "monthly"
     groups:
