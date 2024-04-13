@@ -10,10 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v3
         with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
+          version: 8
+          run_install: true
       - name: check(lint, format)
-        run: npm run check
+        run: pnpm run check
