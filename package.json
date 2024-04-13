@@ -2,7 +2,7 @@
   "name": "pocket-reporter",
   "version": "0.0.0",
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
+    "@biomejs/biome": "1.6.4",
     "@cloudflare/workers-types": "^4.20230628.0",
     "typescript": "^5.3.3",
     "wrangler": "^3.30.1"
