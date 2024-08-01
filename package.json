@@ -4,8 +4,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"@cloudflare/workers-types": "^4.20230628.0",
-		"typescript": "^5.5.3",
-		"wrangler": "^3.62.0"
+		"typescript": "^5.5.4",
+		"wrangler": "^3.68.0"
 	},
 	"private": true,
 	"scripts": {
